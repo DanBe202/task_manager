@@ -1,0 +1,39 @@
+<div class="flex justify-between items-center mb-8">
+  <h1 class="text-3xl font-bold text-white">Tasks</h1>
+  <div class="flex gap-4 items-center">
+    <%= link_to "New task", new_task_path, class: "bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition" %>
+  </div>
+</div>
+
+<div id="tasks" class="space-y-4">
+  <% @tasks.each do |task| %>
+    <div class="p-5 bg-slate-700/50 border border-slate-600 rounded-xl flex justify-between items-center hover:border-indigo-500/50 transition duration-300">
+      <div>
+        <h2 class="text-xl font-semibold <%= 'line-through text-slate-500' if task.completed %>">
+          <%= task.title %>
+        </h2>
+        <div class="flex gap-3 mt-2">
+          <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 bg-slate-800 text-indigo-400 rounded border border-slate-600">
+            <%= task.priority %>
+          </span>
+          <span class="text-xs text-slate-400 self-center">
+            <%= task.category %>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <%= link_to "Edit", edit_task_path(task), class: "text-slate-400 hover:text-white transition text-sm font-medium" %>
+
+        <%= button_to task_path(task),
+                      method: :delete,
+                      form: { data: { turbo_confirm: "Are you sure?" } },
+                      class: "text-rose-500 hover:text-rose-400 p-1 rounded-lg hover:bg-rose-500/10 transition-all duration-200" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
