@@ -1,6 +1,9 @@
-<div>
-  <h1>New task</h1>
-  <%= render "form", task: @task %>
-  <br>
-  <%= link_to "Back to tasks", tasks_path %>
+<div class="row justify-content-center mb-5">
+  <div class="col-lg-8 col-xl-7">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="fw-bold mb-0">Створити завдання</h1>
+      <%= link_to "Скасувати", tasks_path, class: "btn btn-light rounded-pill px-3 shadow-sm" %>
+    </div>
+    <%= render "form", task: @task %>
+  </div>
 </div>

@@ -1,24 +1,45 @@
-<div>
-  <h1>Tasks</h1>
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+  <h1 class="fw-bold mb-0">Мої завдання</h1>
+  <%= link_to "Нове завдання", new_task_path, class: "btn btn-primary rounded-pill px-4 shadow-sm" %>
+</div>
 
-  <div style="margin-bottom: 20px;">
-    <%= link_to "Show Completed Tasks", completed_tasks_path %> |
-    <%= link_to "Manage Categories", categories_path %> |
-    <%= link_to "New task", new_task_path %>
-  </div>
-
-  <div id="tasks">
-    <% @tasks.each do |task| %>
-      <hr>
-      <p>
-        <strong>[<%= task.completed ? "X" : " " %>] <%= task.title %></strong>
-        (Priority: <%= task.priority %>) - Category: <%= task.category %>
-      </p>
-      <p>
-        <%= link_to "Show", task %> |
-        <%= link_to "Edit", edit_task_path(task) %> |
-        <%= button_to "Destroy", task, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-      </p>
-    <% end %>
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-borderless table-hover align-middle mb-0">
+      <thead class="bg-light text-secondary">
+      <tr>
+        <th class="ps-4">Статус</th>
+        <th>Назва</th>
+        <th>Категорія</th>
+        <th>Пріоритет</th>
+        <th>Дедлайн</th>
+        <th class="text-end pe-4">Дії</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td class="ps-4">
+            <% if task.completed %>
+              <span class="badge bg-success rounded-pill px-3">Виконано</span>
+            <% else %>
+              <span class="badge bg-secondary rounded-pill px-3">В процесі</span>
+            <% end %>
+          </td>
+          <td class="fw-bold text-dark"><%= task.title %></td>
+          <td><span class="text-muted"><%= task.category %></span></td>
+          <td><%= priority_badge(task) %></td>
+          <td><span class="badge bg-light text-dark border"><%= task.due_date %></span></td>
+          <td class="text-end pe-4">
+            <div class="btn-group">
+              <%= link_to "Редагувати", edit_task_path(task), class: "btn btn-sm btn-light text-decoration-none", title: "Редагувати" %>
+              <%= link_to "Переглянути", task, class: "btn btn-sm btn-light text-decoration-none", title: "Деталі" %>
+              <%= button_to "Видалити", task, method: :delete, data: { turbo_confirm: "Точно видалити?" }, class: "btn btn-sm btn-light text-decoration-none", title: "Видалити" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -1,16 +1,41 @@
-<div>
-  <p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success rounded-pill border-0 shadow-sm text-center mb-4"><%= notice %></div>
+<% end %>
 
-  <h2><%= @task.title %></h2>
-  <p><strong>Category:</strong> <%= @task.category %></p>
-  <p><strong>Priority:</strong> <%= @task.priority %></p>
-  <p><strong>Due Date:</strong> <%= @task.due_date %></p>
-  <p><strong>Estimated Hours:</strong> <%= @task.estimated_hours %></p>
-  <p><strong>Status:</strong> <%= @task.completed ? "Completed" : "In Progress" %></p>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+      <div class="card-header bg-primary text-white p-4 border-0 d-flex justify-content-between align-items-center">
+        <h2 class="h3 mb-0 fw-bold"><%= @task.title %></h2>
+        <div class="bg-white p-1 rounded-pill shadow-sm">
+          <%= priority_badge(@task) %>
+        </div>
+      </div>
 
-  <div style="margin-top: 20px;">
-    <%= link_to "Edit this task", edit_task_path(@task) %> |
-    <%= link_to "Back to tasks", tasks_path %>
-    <%= button_to "Destroy this task", @task, method: :delete %>
+      <div class="card-body p-4 p-md-5">
+        <div class="row mb-4">
+          <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Категорія</div>
+          <div class="col-sm-8 fs-5"><%= @task.category %></div>
+        </div>
+        <hr class="text-light">
+
+        <div class="row mb-4">
+          <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Дедлайн</div>
+          <div class="col-sm-8 fs-5"><span class="badge bg-light text-dark border p-2"><%= @task.due_date %></span></div>
+        </div>
+        <hr class="text-light">
+
+        <div class="row mb-4">
+          <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Оцінка часу</div>
+          <div class="col-sm-8 fs-5"><span class="badge bg-light text-dark border p-2"><%= @task.estimated_hours %> годин(и)</span></div>
+        </div>
+      </div>
+
+      <hr class="text-light">
+      <div class="card-footer bg-light p-4 border-0 d-flex justify-content-between align-items-center">
+        <%= link_to "До всіх завдань", tasks_path, class: "btn btn-link text-decoration-none text-black fw-bold" %>
+        <%= link_to "Редагувати", edit_task_path(@task), class: "btn btn-warning rounded-pill px-4 fw-bold shadow-sm" %>
+      </div>
+    </div>
   </div>
 </div>

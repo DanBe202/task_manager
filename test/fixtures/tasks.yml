@@ -4,7 +4,7 @@ one:
   title: MyString
   category: MyString
   priority: 1
-  due_date: 2026-05-15
+  due_date: 2026-05-22
   estimated_hours: 1
   completed: false
 
@@ -12,6 +12,6 @@ two:
   title: MyString
   category: MyString
   priority: 1
-  due_date: 2026-05-15
+  due_date: 2026-05-22
   estimated_hours: 1
   completed: false
