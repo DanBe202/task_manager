@@ -8,13 +8,12 @@ Rails.application.routes.draw do
 
   resources :tasks do
     collection do
-      get :completed # Створює маршрут GET /tasks/completed (кастомна сторінка з варіанту)
+      get :completed
     end
   end
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  root "tasks#index"
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "tasks#index"
 end
