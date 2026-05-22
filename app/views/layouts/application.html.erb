@@ -20,13 +20,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto gap-2">
         <li class="nav-item">
-          <%= link_to "Всі завдання", tasks_path, class: "nav-link btn btn-sm btn-outline-light rounded-pill px-3 text-white" %>
+          <%= link_to "Дедлайн цього тижня", due_this_week_tasks_path, class: "nav-link btn btn-sm btn-outline-light rounded-pill px-3 text-white" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Виконані", completed_tasks_path, class: "nav-link btn btn-sm btn-outline-light rounded-pill px-3 text-white" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Категорії", categories_path, class: "nav-link btn btn-sm btn-outline-light rounded-pill px-3 text-white" %>
+          <%= link_to "Категорії", categories_path, class: "nav-link text-white" %>
         </li>
       </ul>
     </div>

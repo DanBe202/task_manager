@@ -45,14 +45,33 @@
     </div>
   </div>
 
+  <div class="form-floating mb-4">
+    <%= form.text_area :notes, class: "form-control bg-light border-0", placeholder: "Нотатки", style: "height: 100px" %>
+    <%= form.label :notes, "Нотатки", class: "text-muted" %>
+  </div>
+
   <div class="mb-4 form-check form-switch">
     <%= form.check_box :completed, class: "form-check-input" %>
     <%= form.label :completed, "Завдання виконано", class: "form-check-label text-black" %>
   </div>
 
+  <div class="p-4 bg-light rounded-4 mb-4">
+    <h6 class="mb-3 text-primary fw-bold">📎 Вкладення до завдання (опціонально)</h6>
+    <%= fields_for :attachment do |attachment_form| %>
+      <div class="row g-3">
+        <div class="col-md-6 form-floating">
+          <%= attachment_form.text_field :filename, class: "form-control border-0", placeholder: "Назва файлу" %>
+          <%= attachment_form.label :filename, "Назва файлу", class: "text-muted ms-2" %>
+        </div>
+        <div class="col-md-6 form-floating">
+          <%= attachment_form.text_field :url, class: "form-control border-0", placeholder: "URL" %>
+          <%= attachment_form.label :url, "Посилання (URL)", class: "text-muted ms-2" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <div class="mt-2">
     <%= form.submit "Зберегти завдання", class: "btn btn-primary btn-lg w-100 rounded-pill shadow-sm" %>
   </div>
 <% end %>
-

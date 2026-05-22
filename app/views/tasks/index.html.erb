@@ -3,6 +3,22 @@
   <%= link_to "Нове завдання", new_task_path, class: "btn btn-primary rounded-pill px-4 shadow-sm" %>
 </div>
 
+<div class="card border-0 shadow-sm rounded-4 mb-4 p-3 bg-white">
+  <div class="d-flex flex-wrap align-items-center gap-2">
+    <span class="badge bg-light me-2 px-3 py-2 rounded-pill">Фільтри:</span>
+    <%= link_to "Всі", tasks_path, class: "btn btn-outline-secondary btn-sm rounded-pill px-3" %>
+    <%= link_to "Виконані", completed_tasks_path, class: "btn btn-outline-success btn-sm rounded-pill px-3" %>
+    <%= link_to "Невиконані", pending_sorted_tasks_path, class: "btn btn-outline-primary btn-sm rounded-pill px-3" %>
+    <%= link_to "Топ-3 найближчі", closest_three_tasks_path, class: "btn btn-outline-info btn-sm rounded-pill px-3" %>
+    <%= link_to "Важливі", high_priority_tasks_tasks_path, class: "btn btn-outline-danger btn-sm rounded-pill px-3" %>
+
+    <%= form_with url: search_tasks_path, method: :get, class: "d-flex ms-auto gap-2" do |f| %>
+      <%= f.text_field :query, placeholder: "Пошук...", class: "form-control form-control-sm rounded-pill border-0 bg-light px-3", required: true %>
+      <%= f.submit "Знайти", class: "btn btn-dark btn-sm rounded-pill px-3" %>
+    <% end %>
+  </div>
+</div>
+
 <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
   <div class="table-responsive">
     <table class="table table-borderless table-hover align-middle mb-0">

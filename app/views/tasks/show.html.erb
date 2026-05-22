@@ -29,11 +29,34 @@
           <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Оцінка часу</div>
           <div class="col-sm-8 fs-5"><span class="badge bg-light text-dark border p-2"><%= @task.estimated_hours %> годин(и)</span></div>
         </div>
-      </div>
+        <hr class="text-light">
 
-      <hr class="text-light">
+        <div class="row mb-4">
+          <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Нотатки</div>
+          <div class="col-sm-8"><p class="mb-0 bg-light p-3 rounded-3"><%= @task.notes.presence || "Немає нотаток" %></p></div>
+        </div>
+        <hr class="text-light">
+
+        <div class="row mb-4">
+          <div class="col-sm-4 text-muted small text-uppercase fw-bold mb-1">Вкладення</div>
+          <div class="col-sm-8">
+            <% attachments = Attachment.where(task_id: @task.id) %>
+            <% if attachments.any? %>
+              <div class="d-flex flex-wrap gap-2">
+                <% attachments.each do |attachment| %>
+                  <%= link_to attachment.url, target: "_blank", class: "btn btn-outline-primary btn-sm rounded-pill d-inline-flex align-items-center gap-2" do %>
+                    <span>Вкладення</span> <%= attachment.filename %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% else %>
+              <span class="text-muted">Немає прикріплених файлів</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <div class="card-footer bg-light p-4 border-0 d-flex justify-content-between align-items-center">
-        <%= link_to "До всіх завдань", tasks_path, class: "btn btn-link text-decoration-none text-black fw-bold" %>
+        <%= link_to "До всіх завдань", tasks_path, class: "btn btn-link text-decoration-none text-secondary fw-bold" %>
         <%= link_to "Редагувати", edit_task_path(@task), class: "btn btn-warning rounded-pill px-4 fw-bold shadow-sm" %>
       </div>
     </div>
