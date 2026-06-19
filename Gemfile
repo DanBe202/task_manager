@@ -67,4 +67,4 @@ end
 
 gem "rubocop-rails", "~> 2.35", group: :development
 
-gem "tailwindcss-rails", "~> 4.4"
+gem "tailwindcss-rails", "~> 4.6"
